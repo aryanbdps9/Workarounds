@@ -19,5 +19,16 @@ Traceback (most recent call last):
     return codecs.charmap_decode(input,self.errors,decoding_table)[0]
 UnicodeDecodeError: 'charmap' codec can't decode byte 0x9d in position 2152: character maps to <undefined>
 ```
+### Solution
+[This stackoverflow answer](https://stackoverflow.com/a/56124666) says we need to remove the python history file (`~/.python_history` on Linux and `%userprofile%/.python_history` on Windows). Just deleting lines containing non-ascii characters worked for me.
 
-[Solution](https://stackoverflow.com/a/56124666)
+
+## Enable Tab completion in cmd on Windows
+I followed [this link](https://www.maketecheasier.com/enable-auto-complete-feature-command-prompt-windows/). Here are the steps:
+1. Open Registry Editor.
+2. Navigate to the following key:
+   `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor`
+3. Set the value of `CompletionChar` key (double click to open the edit dialogue box) to `9`. Make sure that Base is set to `Hexadecimal`. That's it!
+
+Extra: ascii value of `Tab` key is `0x9`, hence we set the value of `CompletionChar` to `9`. If you want to use some other character for autocompletion, feel free to put its ascii value instead. [Here is a link to ascii table.](http://www.asciitable.com/).
+
